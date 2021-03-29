@@ -161,7 +161,8 @@
       title="分配角色"
       :visible.sync="setRoleDialogVisible"
       width="50%"
-      @close="setRoleDialogClosed">
+      @close="setRoleDialogClosed"
+    >
       <div>
         <p>当前的用户：{{ userInfo.username }}</p>
         <p>当前的角色：{{ userInfo.role_name }}</p>
@@ -336,6 +337,7 @@ export default {
     },
     // 展示用户编辑的对话框
     async showEditDialog(id) {
+      console.log(id)
       const { data: res } = await this.$http.get('users/' + id)
       if (res.meta.status !== 200) {
         return this.$message.error('查询用户信息失败！')
@@ -365,7 +367,6 @@ export default {
         this.getUserList()
         // 提示修改成功
         this.$message.success('更新用户状态成功！')
-        console.log(this.editForm)
       })
     },
     // 更加id删除对应用户的信息
@@ -410,9 +411,12 @@ export default {
       if (!this.selectedRoleId) {
         return this.$message.error('请选择要分配的角色！')
       }
-      const { data: res } = await this.$http.put(`users/${this.userInfo.id}/role`, {
-        rid: this.selectedRoleId
-      })
+      const { data: res } = await this.$http.put(
+        `users/${this.userInfo.id}/role`,
+        {
+          rid: this.selectedRoleId
+        }
+      )
       if (res.meta.status !== 200) {
         return this.$message.error('更新角色失败！')
       }
