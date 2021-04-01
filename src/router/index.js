@@ -8,6 +8,7 @@ import Rights from '../components/power/Rights.vue'
 import Roles from '../components/power/Roles.vue'
 import Cate from '../components/goods/Cate.vue'
 import DateCenter from '../components/data-center/data-center.vue'
+import Params from '../components/goods/Params.vue'
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,8 @@ const router = new VueRouter({
         { path: '/rights', component: Rights },
         { path: '/roles', component: Roles },
         { path: '/categories', component: Cate },
-        { path: '/reports', component: DateCenter }
+        { path: '/reports', component: DateCenter },
+        { path: '/params', component: Params }
       ]
     }
   ]
